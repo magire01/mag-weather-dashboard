@@ -1,7 +1,17 @@
 console.log("test");
 
-var cityName = "Louisville";
-var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=3e1d9b21516255772cfd52b6d808ff3c";
+var searchBarText = $("#search-bar")
+var searchBtn = $("#search-button");
+var cityName = ["Louisville"];
+searchBtn.on("click", function() {
+    cityName.push(searchBarText.val());
+    console.log(cityName)
+})
+
+
+
+var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName[0] + "&appid=3e1d9b21516255772cfd52b6d808ff3c";
+
 
 function displayWeather() {
     $.ajax({
