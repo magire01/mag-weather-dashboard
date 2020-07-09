@@ -96,7 +96,7 @@ $(document).ready(function() {
         console.log("button test");
         var queryURL = buildQueryURL();
         console.log(queryURL);
-        weatherForecast();
+        weatherForecast(town);
         // makeBtn(nameCity);
         makeBtn(town);
             
