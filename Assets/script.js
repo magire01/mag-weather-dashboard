@@ -5,14 +5,12 @@ $(document).ready(function() {
     var searchBarText = $("#search-bar")
     var searchBtn = $("#search-button");
     var previousSearch = $("#previous-search");
-    var searches = [];
-    var cityName = [];
     
-    function buildQueryURL() {
-        var cityName = [];
-        cityName.push(searchBarText.val());
-        console.log(cityName);
-        var queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=3e1d9b21516255772cfd52b6d808ff3c`;
+    function buildQueryURL(town) {
+        // var town = [];
+        // cityName.push(searchBarText.val());
+        console.log(town);
+        var queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${town}&appid=3e1d9b21516255772cfd52b6d808ff3c`;
         console.log(queryURL);
         return queryURL;
     } 
@@ -80,9 +78,11 @@ $(document).ready(function() {
 
     
     function weatherForecast(town) {
-        console.log(town);
+        var queryURL = buildQueryURL(town);
+        console.log(queryURL);
+        // console.log(town);
         $.ajax({
-            url: `https://api.openweathermap.org/data/2.5/forecast?q=${town}&appid=3e1d9b21516255772cfd52b6d808ff3c`,
+            url: queryURL,
             method: "GET"
         }).then(updatePage);
     }
@@ -94,8 +94,8 @@ $(document).ready(function() {
         var town = searchBarText.val();
         event.preventDefault();
         console.log("button test");
-        var queryURL = buildQueryURL();
-        console.log(queryURL);
+        
+        
         weatherForecast(town);
         // makeBtn(nameCity);
         makeBtn(town);
