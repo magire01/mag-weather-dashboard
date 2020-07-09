@@ -7,7 +7,7 @@ $(document).ready(function() {
     var previousSearch = $("#previous-search");
     var searches = [];
     var cityName = [];
-
+    
     function buildQueryURL() {
         var cityName = [];
         cityName.push(searchBarText.val());
@@ -20,19 +20,20 @@ $(document).ready(function() {
 
     function saveSearch() {
         // previousSearch.empty();
-        var storedSearchItem = localStorage.getItem("Search");
+        // var storedSearchItem = localStorage.getItem("Search");
         localStorage.setItem("Search", searchBarText.val());
 
-        var storedSearchBtn = $("<button>");
-        storedSearchBtn.attr("class", "row");
-        storedSearchBtn.attr("id", searchBarText);
-        storedSearchBtn.text(storedSearchItem);
-        previousSearch.append(storedSearchBtn);
+    //     var storedSearchBtn = $("<button>");
+    //     storedSearchBtn.attr("class", "row");
+    //     storedSearchBtn.attr("id", searchBarText);
+    //     storedSearchBtn.text(storedSearchItem);
+    //     previousSearch.append(storedSearchBtn);
       
     }
 
     function makeBtn(input) {
         var btn = $("<button>").text(input);
+
         previousSearch.append(btn);
         console.log(input);
     }
@@ -40,8 +41,6 @@ $(document).ready(function() {
     previousSearch.on("click", "button", function() {
         clear();
         weatherForecast($(this).text());
-        
-
     })
     
     function updatePage(response) {
@@ -52,7 +51,7 @@ $(document).ready(function() {
         var nameHumidity = response.list[0].main.humidity;
         var nameWindSpeed = response.list[0].wind.speed;
         var nameUVIndex = response.list[0].clouds.all;
-        makeBtn(nameCity);
+        
         
         var cityDiv = $("<h3>");
         cityDiv.text(nameCity + " (" + nameDate + ")");
@@ -92,19 +91,21 @@ $(document).ready(function() {
         // searches.push(searchBarText.val());
         saveSearch();
         clear();
-
+        var town = searchBarText.val();
         event.preventDefault();
         console.log("button test");
         var queryURL = buildQueryURL();
         console.log(queryURL);
         weatherForecast();
+        // makeBtn(nameCity);
+        makeBtn(town);
             
     });
 
 
 
 
-    
+    //searchBtn.on("click", makeBtn(searchBarText.val()));
 
     // searchBtn.on("click", function() {
     //     
