@@ -5,7 +5,7 @@ $(document).ready(function() {
     var searchBarText = $("#search-bar")
     var searchBtn = $("#search-button");
     
-
+    var searches = [];
 
     function buildQueryURL() {
         var cityName = [];
@@ -15,6 +15,14 @@ $(document).ready(function() {
         console.log(queryURL);
         return queryURL;
     } 
+    
+
+    function saveSearch() {
+        for(var i = 0; i < searches.length; i++) {
+            localStorage.setItem("Search" + i, searches[i]);
+            console.log("Search Loop Test " + i);
+        }
+    }
     
     function updatePage(response) {
         console.log(response);
@@ -44,7 +52,6 @@ $(document).ready(function() {
         var UVIndexDiv = $("<h6>");
         UVIndexDiv.text("UV Index: " + nameUVIndex);
         $("#search-results").append(UVIndexDiv);
-        // event.preventDefault();
     }
     
     function clear() {
@@ -52,6 +59,8 @@ $(document).ready(function() {
       }
 
     searchBtn.on("click", function(event) {
+        searches.push(searchBarText.val());
+        saveSearch();
         clear();
 
         event.preventDefault();
