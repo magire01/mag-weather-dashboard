@@ -6,6 +6,7 @@ $(document).ready(function() {
     var searchBtn = $("#search-button");
     var previousSearch = $("#previous-search");
     var searches = [];
+    var cityName = [];
 
     function buildQueryURL() {
         var cityName = [];
@@ -18,21 +19,30 @@ $(document).ready(function() {
     
 
     function saveSearch() {
-        previousSearch.empty();
-        for(var i = 0; i < searches.length; i++) {
-            
-            
-            localStorage.setItem("Search" + i, searches[i]);
-            
-            var storedSearchItem = localStorage.getItem("Search" + i);
-            var storedSearchBtn = $("<button>");
-            storedSearchBtn.attr("class", "row");
-            storedSearchBtn.text(storedSearchItem);
-            previousSearch.prepend(storedSearchBtn);
+        // previousSearch.empty();
+        var storedSearchItem = localStorage.getItem("Search");
+        localStorage.setItem("Search", searchBarText.val());
 
-
-        }
+        var storedSearchBtn = $("<button>");
+        storedSearchBtn.attr("class", "row");
+        storedSearchBtn.attr("id", searchBarText);
+        storedSearchBtn.text(storedSearchItem);
+        previousSearch.append(storedSearchBtn);
+      
     }
+
+    function makeBtn(input) {
+        var btn = $("<button>").text(input);
+        previousSearch.append(btn);
+        console.log(input);
+    }
+
+    previousSearch.on("click", "button", function() {
+        clear();
+        weatherForecast($(this).text());
+        
+
+    })
     
     function updatePage(response) {
         console.log(response);
@@ -42,6 +52,7 @@ $(document).ready(function() {
         var nameHumidity = response.list[0].main.humidity;
         var nameWindSpeed = response.list[0].wind.speed;
         var nameUVIndex = response.list[0].clouds.all;
+        makeBtn(nameCity);
         
         var cityDiv = $("<h3>");
         cityDiv.text(nameCity + " (" + nameDate + ")");
@@ -68,8 +79,17 @@ $(document).ready(function() {
         $("#search-results").empty();
       }
 
+    
+    function weatherForecast(town) {
+        console.log(town);
+        $.ajax({
+            url: `https://api.openweathermap.org/data/2.5/forecast?q=${town}&appid=3e1d9b21516255772cfd52b6d808ff3c`,
+            method: "GET"
+        }).then(updatePage);
+    }
+
     searchBtn.on("click", function(event) {
-        searches.push(searchBarText.val());
+        // searches.push(searchBarText.val());
         saveSearch();
         clear();
 
@@ -77,12 +97,12 @@ $(document).ready(function() {
         console.log("button test");
         var queryURL = buildQueryURL();
         console.log(queryURL);
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(updatePage);
+        weatherForecast();
             
     });
+
+
+
 
     
 
@@ -94,5 +114,26 @@ $(document).ready(function() {
     // searchBtn.on("click", function () {
     //     weather();
     // });
+
+      // for(var i = 0; i < searches.length; i++) {
+        //     localStorage.setItem("Search" + i, searches[i]);
+        //     var storedSearchItem = localStorage.getItem("Search" + i);
+        //     var storedSearchBtn = $("<button>");
+        //     storedSearchBtn.attr("class", "row");
+        //     storedSearchBtn.attr("id", "button" + i)
+        //     storedSearchBtn.text(storedSearchItem);
+        //     previousSearch.prepend(storedSearchBtn);
+        //     $(document).on("click", "#button" + i, function() {
+        //         console.log("Button" + i + " test: Complete")
+        //     });
+
+
+        //     //     // var cityName = [];
+        //     //     // cityName.push(searches[i]);
+        //     //     // console.log("cityName test: " + cityName);
+        //     //     })
+        //     // }
+
+        // }
 
 });
