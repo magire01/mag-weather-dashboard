@@ -4,7 +4,7 @@ $(document).ready(function() {
 
     var searchBarText = $("#search-bar")
     var searchBtn = $("#search-button");
-    
+    var previousSearch = $("#previous-search");
     var searches = [];
 
     function buildQueryURL() {
@@ -18,9 +18,19 @@ $(document).ready(function() {
     
 
     function saveSearch() {
+        previousSearch.empty();
         for(var i = 0; i < searches.length; i++) {
+            
+            
             localStorage.setItem("Search" + i, searches[i]);
-            console.log("Search Loop Test " + i);
+            
+            var storedSearchItem = localStorage.getItem("Search" + i);
+            var storedSearchBtn = $("<button>");
+            // storedSearchBtn.attr("class", "row");
+            storedSearchBtn.text(storedSearchItem);
+            previousSearch.append(storedSearchBtn);
+
+
         }
     }
     
@@ -73,6 +83,8 @@ $(document).ready(function() {
         }).then(updatePage);
             
     });
+
+    
 
     // searchBtn.on("click", function() {
     //     
