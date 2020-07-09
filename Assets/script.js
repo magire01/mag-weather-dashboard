@@ -26,9 +26,9 @@ $(document).ready(function() {
             
             var storedSearchItem = localStorage.getItem("Search" + i);
             var storedSearchBtn = $("<button>");
-            // storedSearchBtn.attr("class", "row");
+            storedSearchBtn.attr("class", "row");
             storedSearchBtn.text(storedSearchItem);
-            previousSearch.append(storedSearchBtn);
+            previousSearch.prepend(storedSearchBtn);
 
 
         }
