@@ -1,7 +1,44 @@
 body {
-    background-color: beige;
+    background-color: white;
 }
 
-.forecast-card {
+h1 {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;  
+    color: darkblue  
+}
+
+#search-results {
+    background-color: powderblue;
+}
+
+#search-results-future {
+    background-color: powderblue;
+}
+
+#search-button {
+    color: white;
+    background-color: darkblue;
+}
+
+.previous-search-button {
     background-color: white;
+    color: darkblue;
+    width: 200px;
+}
+
+h6 {
+    font: 20px;
+    color: darkblue;
+
+}
+
+h3 {
+    font: 35px;
+    color: darkblue;
+}
+
+ul {
+    font: 18px;
+    color: darkblue
 }

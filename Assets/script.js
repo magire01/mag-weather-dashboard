@@ -23,7 +23,8 @@ $(document).ready(function() {
 
     function makeBtn(input) {
         var btn = $("<button>").text(input);
-        btn.attr("class", "row");    
+        btn.attr("class", "row");
+        btn.attr("class", "previous-search-button");    
         previousSearch.prepend(btn);
         console.log(input);
     }
@@ -77,6 +78,7 @@ $(document).ready(function() {
 
             //body
         var cardDiv1 = $("<card>");
+        
         cardDiv1.attr("class", "forecast-card");
         cardDiv1.attr("id", "day-forecast-future");
         $("#search-results-future").append(cardDiv1);
