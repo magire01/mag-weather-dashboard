@@ -49,6 +49,10 @@ $(document).ready(function() {
         cityDiv.attr("class", "row");
         $("#search-results").append(cityDiv);
         
+        var iconDiv = $("<img>");
+        iconDiv.attr("src", "http://openweathermap.org/img/wn/" + response.list[0].weather[0].icon + "@2x.png");
+        $("#search-results").append(iconDiv);
+        
         var tempDiv = $("<h6>");
         tempDiv.text("Temperature: " + nameTemp);
         tempDiv.attr("class", "row");

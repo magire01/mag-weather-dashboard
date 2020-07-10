@@ -8,6 +8,10 @@ h1 {
     color: darkblue  
 }
 
+p {
+    color: darkblue;
+}
+
 #search-results {
     background-color: powderblue;
 }
