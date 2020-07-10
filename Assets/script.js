@@ -10,7 +10,7 @@ $(document).ready(function() {
         // var town = [];
         // cityName.push(searchBarText.val());
         console.log(town);
-        var queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${town}&appid=3e1d9b21516255772cfd52b6d808ff3c`;
+        var queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${town}&units=imperial&appid=3e1d9b21516255772cfd52b6d808ff3c`;
         console.log(queryURL);
         return queryURL;
     } 
