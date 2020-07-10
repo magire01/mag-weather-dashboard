@@ -20,6 +20,7 @@ $(document).ready(function() {
         localStorage.setItem("Search", searchBarText.val());
     }
 
+
     function makeBtn(input) {
         var btn = $("<button>").text(input);
         btn.attr("class", "row");    
