@@ -17,22 +17,13 @@ $(document).ready(function() {
     
 
     function saveSearch() {
-        // previousSearch.empty();
-        // var storedSearchItem = localStorage.getItem("Search");
         localStorage.setItem("Search", searchBarText.val());
-
-    //     var storedSearchBtn = $("<button>");
-    //     storedSearchBtn.attr("class", "row");
-    //     storedSearchBtn.attr("id", searchBarText);
-    //     storedSearchBtn.text(storedSearchItem);
-    //     previousSearch.append(storedSearchBtn);
-      
     }
 
     function makeBtn(input) {
         var btn = $("<button>").text(input);
-
-        previousSearch.append(btn);
+        btn.attr("class", "row");    
+        previousSearch.prepend(btn);
         console.log(input);
     }
 
@@ -49,26 +40,31 @@ $(document).ready(function() {
         var nameHumidity = response.list[0].main.humidity;
         var nameWindSpeed = response.list[0].wind.speed;
         var nameUVIndex = response.list[0].clouds.all;
-        
+    
         
         var cityDiv = $("<h3>");
         cityDiv.text(nameCity + " (" + nameDate + ")");
+        cityDiv.attr("class", "row");
         $("#search-results").append(cityDiv);
         
         var tempDiv = $("<h6>");
         tempDiv.text("Temperature: " + nameTemp);
+        tempDiv.attr("class", "row");
         $("#search-results").append(tempDiv);
 
         var humidityDiv = $("<h6>");
         humidityDiv.text("Humidity: " + nameHumidity);
+        humidityDiv.attr("class", "row");
         $("#search-results").append(humidityDiv);
 
         var windSpeedDiv = $("<h6>");
         windSpeedDiv.text("Wind Speed: " + nameWindSpeed);
+        windSpeedDiv.attr("class", "row");
         $("#search-results").append(windSpeedDiv);
 
         var UVIndexDiv = $("<h6>");
         UVIndexDiv.text("UV Index: " + nameUVIndex);
+        UVIndexDiv.attr("class", "row");
         $("#search-results").append(UVIndexDiv);
     }
     
@@ -101,40 +97,5 @@ $(document).ready(function() {
         makeBtn(town);
             
     });
-
-
-
-
-    //searchBtn.on("click", makeBtn(searchBarText.val()));
-
-    // searchBtn.on("click", function() {
-    //     
-    
-    // });
-
-    // searchBtn.on("click", function () {
-    //     weather();
-    // });
-
-      // for(var i = 0; i < searches.length; i++) {
-        //     localStorage.setItem("Search" + i, searches[i]);
-        //     var storedSearchItem = localStorage.getItem("Search" + i);
-        //     var storedSearchBtn = $("<button>");
-        //     storedSearchBtn.attr("class", "row");
-        //     storedSearchBtn.attr("id", "button" + i)
-        //     storedSearchBtn.text(storedSearchItem);
-        //     previousSearch.prepend(storedSearchBtn);
-        //     $(document).on("click", "#button" + i, function() {
-        //         console.log("Button" + i + " test: Complete")
-        //     });
-
-
-        //     //     // var cityName = [];
-        //     //     // cityName.push(searches[i]);
-        //     //     // console.log("cityName test: " + cityName);
-        //     //     })
-        //     // }
-
-        // }
 
 });
